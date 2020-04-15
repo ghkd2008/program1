@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>스마트 재고 관리 프로그램</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <style>
+      p { margin:20px 0px; }
+
+      #ingredient_input {
+        
+        font-size: 30px;
+        width: 900px;
+        margin: 10px auto;
+        border: 3px solid rgb(14, 3, 2);
+        padding: 20px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p><h1>스마트 재고 관리 프로그램</h1></p>
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#ingredient">재료</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#order">주문</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#order_validity">주문가능량</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#input_recipe">레시피 입력</a>
+              </li>
+            </ul>
+
+            <br>
+            <br>
+
+            <form id="ingredient_input">
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="ingredient">
+                <p>재료명, 수량, 원가, 유통기한을 입력하고 입력하기 버튼을 누르세요</p>
+                <div class="input-group mb-3">
+
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" >재료명</span>
+                  </div>
+                  <input type="text" class="form-control" id="ingredient_name" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">수량</span>
+                  </div>
+                  <input type="number" class="form-control" id="ingredient_quantity" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">원가</span>
+                  </div>
+                  <input type="number" class="form-control" id="ingredient_production_cost" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+
+                <div>유통기한
+                <form>
+                  <p><input type="date" value="" id ="ingredient_expiration_date"></p>
+                </div>
+              </form>
+
+              <div class="submitButton">
+                <button type="button" class="btn btn-primary" onclick="input_ingredient()">
+                  재료 입력하기
+                </button>
+              </div>
+              <br>
+              <div class="ingredients">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="meta_info" scope="col">재료명</th>
+                            <th class="meta_info" scope="col">수량</th>
+                            <th class="meta_info" scope="col">원가</th>
+                            <th class="meta_info" scope="col">유통기한</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ingredients-box">
+                        <tr>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>@mdo</td>
+                            <td>@mdo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+              </div>
+         
+             
+
+            </form>
+
+              <div class="tab-pane fade" id="order">
+                <p>주문받은 날짜와 메뉴와 수량을 입력하세요</p>
+                <br>
+                  <div>주문날짜입력
+                    <form>
+                      <p><input type="date" id="now_date"></p>
+                    </div>
+                <form>
+                  <table id='menu_table'>
+                      <thead id='menu_thead'>
+                          <tr>
+                              <td>
+                                  <div>메뉴</div>   
+                              </td>
+                              <td>
+                                <div>수량</div>
+                                </td>
+                          </tr>
+                      </thead>
+                      <tbody id='menu_tbody'>
+                          <tr>
+                              <td><input type='text' name='opty_subj[]'  placeholder="메뉴를 입력하세요"></td>
+                              <td><input type='number' name='opt[0][]'  placeholder="주문 수량을 입력하세요"></td>
+                          </tr>
+                      </tbody>
+                  </table>
+                  <input type=button value="메뉴 입력칸 추가" onclick="add_menu_row();">
+                  
+                  <input type=button value="메뉴 입력칸 삭제" onclick="del_menu_row();">
+                  <div class="submitButton">
+                    <button type="button" class="btn btn-primary" onclick="">
+                      주문 입력하기
+                    </button>
+                    <span> <p> ↑ 위의 버튼을 누르면 주문에 필요한 만큼 재료가 차감됩니다. </p></span>
+                  </div>
+                  </form>
+                  <div class="orders">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="meta_info" scope="col">주문날짜</th>
+                                <th class="meta_info" scope="col">주문 메뉴</th>
+                                <th class="meta_info" scope="col">주문 수량</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-box">
+                            <tr>
+                                <td>2020-04-16</td>
+                                <td>메뉴1, 메뉴2, 메뉴3, 메뉴4, 메뉴5</td>
+                                <td>1,2,3,4,5</td>
+                            </tr>
+                            <tr>
+                              <td>2020-04-17</td>
+                              <td>메뉴1, 메뉴3, 메뉴4, 메뉴5</td>
+                              <td>1,2,3,4</td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+              </div>
+
+
+              <div class="tab-pane fade" id="order_validity">
+                <p>현재 남아있는 재료로 만들 수 있는 각 메뉴의 최대수량을 보여줍니다.</p>
+                <div class="orders">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th class="meta_info" scope="col">주문 가능한 메뉴</th>
+                              <th class="meta_info" scope="col">주문 최대 가능량</th>
+                              
+                          </tr>
+                      </thead>
+                      <tbody id="orders-box">
+                          <tr>
+                              <td>메뉴1</td>
+                              <td>10</td>
+                          </tr>
+                          <tr>
+                            <td>메뉴2</td>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                          <td>메뉴3</td>
+                          <td>30</td>
+                      </tr>
+                      </tbody>
+                  </table>
+              </div>
+
+              </div>
+
+
+              <div class="tab-pane fade" id="input_recipe">
+                <p>새로운 메뉴를 추가하려면 메뉴명과 가격을 입력하고, 그에 필요한 재료와 재료수량을 입력하세요</p>
+                <form>
+                  <input type=button value="재료 입력칸 추가" onclick="add_row();">
+                  
+                  <input type=button value="재료 입력칸 삭제" onclick="del_row();">
+                
+                  <table id='stock_table'>
+                      <thead id='stock_thead'>
+                          <tr>
+                              <td>
+                                  <input type=text id="input_menu_name" placeholder="메뉴명을 입력하세요"> 
+                                  
+                              </td>
+                              <td>
+                                <input type='number' id="input_menu_price" placeholder="가격을 입력하세요"><span>원</span>
+                              </td>
+                          </tr>
+                      </thead>
+                      <tbody id='stock_tbody'>
+                          <tr>
+                              <td><input type='text' name='opty_subj[]'  placeholder="필요한 재료를 입력하세요"></td>
+                              <td><input type='number' name='opt[0][]'  placeholder="필요한 재료수량을 입력하세요"></td>
+                          </tr>
+                      </tbody>
+                  </table>
+                  
+                  <div class="submitButton">
+                    <button type="button" class="btn btn-primary" onclick="">
+                      레시피 입력하기
+                    </button>
+                  </div>
+                  </form>
+                 
+
+                  <div class="recipes">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="meta_info" scope="col">번호</th>
+                                <th class="meta_info" scope="col">메뉴명</th>
+                                <th class="meta_info" scope="col">가격</th>
+                                <th class="meta_info" scope="col">필요한 재료</th>
+                                <th class="meta_info" scope="col">필요한 수량</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recipes-box">
+                            <tr>
+                                <td>0</td>
+                                <td>메뉴1</td>
+                                <td>10000</td>
+                                <td>설탕, 소금, 후추</td>
+                                <td>1,2,3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+
+
+
+            </div>
+        </div>
+      </div>
+    </div>
+    
+  
+  
+  
+  
+  
+  
+  <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      function input_ingredient() {
+       
+        let ingredient_name = $("#ingredient_name").val();
+        let ingredient_quantity = $("#ingredient_quantity").val();
+        let ingredient_production_cost = $("#ingredient_production_cost").val();
+        let ingredient_expiration_date = $("#ingredient_expiration_date").val();
+
+        if (ingredient_name == "") {
+          alert("재료명을 입력하세요");
+          $("#ingredient_name").focus();
+          return
+        }
+        else if (ingredient_quantity < 1) {
+          alert("수량을 입력하세요");
+          $("#ingredient_quantity").focus();
+          return
+        }
+        else if (ingredient_production_cost== "") {
+          alert("원가를 입력하세요");
+          $("#ingredient_production_cost").focus();
+          return
+        }
+        else if (ingredient_expiration_date == false) {
+          alert("유통기한을 입력하세요");
+          $("#ingredient_expiration_date").focus();
+          return
+        }
+        $.ajax({
+                    type: "POST",
+                    url: "/ingredients",
+                    data: { ingredient_give: ingredient_name, quantity_give: ingredient_quantity, production_cost_give: ingredient_production_cost, expiration_date_give : ingredient_expiration_date },
+                    success: function (response) {
+                        if (response['result'] == 'success') {
+                            alert(response['msg']);
+                            $('#ingredient_name').val();
+                            $('#ingredient_quantity').val();
+                            $('#ingredient_production_cost').val();
+                            $('#ingredient_expiration_date').val();
+                            window.location.reload();
+                        }
+                    },
+                    error:function(request,status,error){
+             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+          }
+
+                })
+
+      }
+
+      $(document).ready(function () {
+                $('#ingredients-box').html('');
+                listing();
+            });
+
+            function listing() {
+                $.ajax({
+                    type: "GET",
+                    url: "/ingredients",
+                    data: {},
+                    success: function (response) {
+                        if (response['result'] == 'success') {
+                            let ingredients_list = response['ingredients'];
+                            for (let i = 0; i < ingredients_list.length; i++) {
+                                make_card(ingredients_list[i]['ingredient'], ingredients_list[i]['quantity'], ingredients_list[i]['production_cost'],ingredients_list[i]['expiration_date']);
+                            }
+                        } else {
+                            alert('재료리스트를 불러오지 못했습니다');
+                            
+                        }
+                    }
+                })
+            }
+    
+            function make_card(ingredient_name, ingredient_quantity, ingredient_production_cost, ingredient_expiration_date) {
+                let temp_html = '<tr>\
+                                    <td>'+ ingredient_name + '</td>\
+                                    <td>'+ ingredient_quantity + '</td>\
+                                    <td>'+ ingredient_production_cost + '</td>\
+                                    <td>'+ ingredient_expiration_date + '</td>\
+                                </tr>';
+                $('#ingredients-box').append(temp_html);
+            }
+    </script>
+
+  <!--레시피 입력 탭 버튼으로 칸 추가-->
+<script>
+  var stock_table = document.getElementById('stock_table');
+  var stock_thead = document.getElementById('stock_thead');
+  var stock_tbody = document.getElementById('stock_tbody');
+  var stock_tr = null;
+  var stock_td = null;
+  var stock_x = 0;
+  var stock_y = 0;
+ 
+  
+  function add_row() 
+  {
+      // 행 제목 추가
+      stock_tr = document.createElement('tr');
+      stock_tbody.appendChild(stock_tr);
+      stock_td = document.createElement('td');
+      stock_tr.appendChild(stock_td);
+      add_name('opty_subj[]');
+      stock_y++;
+  
+      // 열의 갯수에 따라 추가된 행의 열 추가
+      var stock_thead_td = stock_thead.getElementsByTagName('td');
+      for (i=0; i<stock_thead_td.length-1; i++)
+      {
+          stock_td = document.createElement('td');
+          stock_tr.appendChild(stock_td);
+          add_count('opt['+stock_y+'][]');
+         
+      }
+  }
+  
+  
+  function add_name(name)
+  {
+      var inp = document.createElement('input');
+      inp.setAttribute('type', 'text');
+      inp.setAttribute('placeholder', '필요한 재료를 입력하세요');
+      inp.setAttribute('name', name);
+      stock_td.appendChild(inp);
+  }
+  function add_count(count)
+  {
+      var inp = document.createElement('input');
+      inp.setAttribute('type', 'number');
+      inp.setAttribute('placeholder', '필요한 재료수량을 입력하세요');
+      inp.setAttribute('name', count);
+      stock_td.appendChild(inp);
+  }
+  
+  function del_row()
+  {
+      var stock_tbody_tr = stock_tbody.getElementsByTagName('tr');
+      if (stock_tbody_tr.length > 1) {
+          stock_tbody.deleteRow(stock_tbody_tr.length-1);
+          stock_y--;
+      }
+  }
+  
+ 
+  </script>
+
+
+<!--주문 입력 탭 버튼으로 칸 추가-->
+<script>
+  var menu_table = document.getElementById('menu_table');
+  var menu_thead = document.getElementById('menu_thead');
+  var menu_tbody = document.getElementById('menu_tbody');
+  var menu_tr = null;
+  var menu_td = null;
+  var menu_x = 0;
+  var menu_y = 0;
+  
+  function add_menu_row() 
+  {
+      // 행 제목 추가
+      menu_tr = document.createElement('tr');
+      menu_tbody.appendChild(menu_tr);
+      menu_td = document.createElement('td');
+      menu_tr.appendChild(menu_td);
+      add_menu_name('opty_subj[]');
+      menu_y++;
+  
+      // 열의 갯수에 따라 추가된 행의 열 추가
+      var menu_thead_td = menu_thead.getElementsByTagName('td');
+      for (i=0; i<menu_thead_td.length-1; i++)
+      {
+          menu_td = document.createElement('td');
+          menu_tr.appendChild(menu_td);
+          add_menu_count('opt['+menu_y+'][]');
+         
+      }
+  }
+  
+  
+  function add_menu_name(name)
+  {
+      var inp = document.createElement('input');
+      inp.setAttribute('type', 'text');
+      inp.setAttribute('placeholder', '메뉴를 입력하세요');
+      inp.setAttribute('name', name);
+      menu_td.appendChild(inp);
+  }
+  function add_menu_count(count)
+  {
+      var inp = document.createElement('input');
+      inp.setAttribute('type', 'number');
+      inp.setAttribute('placeholder', '주문 수량을 입력하세요');
+      inp.setAttribute('name', count);
+      menu_td.appendChild(inp);
+  }
+  
+  function del_menu_row()
+  {
+      var menu_tbody_tr = menu_tbody.getElementsByTagName('tr');
+      if (menu_tbody_tr.length > 1) {
+          menu_tbody.deleteRow(menu_tbody_tr.length-1);
+          menu_y--;
+      }
+  }
+  
+ 
+  </script>
+
+<!--오늘날짜 입력-->
+<script>
+  document.getElementById('now_date').valueAsDate = new Date();
+  </script>
+  
+  
+
+
+
+  </body>
+</html>
