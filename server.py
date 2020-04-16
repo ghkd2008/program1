@@ -36,6 +36,11 @@ def read_ingredients():
     ingredients = list(db.ingredients_list.find({},{'_id':0}))
     return jsonify({'result':'success', 'ingredients': ingredients})
 
+#데이터 수정하기 코드 짜보기! 이어서 할 부분
+#db.users.update_many({'name':'bobby'},{'$set':{'name':'bob'}})
+#db.ingredients_list.update_one({'ingredient':'...','quantity':'...','expiration_date'},{'$set':{'age':'10'}})
+
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

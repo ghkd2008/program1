@@ -72,7 +72,7 @@
                 <form>
                   <p><input type="date" value="" id ="ingredient_expiration_date"></p>
                 </div>
-              </form>
+            
 
               <div class="submitButton">
                 <button type="button" class="btn btn-primary" onclick="input_ingredient()">
@@ -100,9 +100,55 @@
                     </tbody>
                 </table>
             </div>
+<hr>
+              <div>재료 수정하기</div>
+              <p>현재 있는 재료 중 수정하고 싶은 재료를 입력하고, 수정할 값을 입력하세요</p>
+              <div class="input-group mb-3">
 
+                <div class="input-group-prepend">
+                  <span class="input-group-text" >현 재료명</span>
+                </div>
+                <input type="text" class="form-control" id="now_ingredient_name" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" >수정 재료명</span>
+                </div>
+                <input type="text" class="form-control" id="change_ingredient_name" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
               </div>
-         
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">현 수량</span>
+              </div>
+              <input type="number" class="form-control" id="now_ingredient_quantity" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+              <div class="input-group-prepend">
+                <span class="input-group-text">수정 수량</span>
+              </div>
+              <input type="number" class="form-control" id="change_ingredient_quantity" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">현 원가</span>
+              </div>
+              <input type="number" class="form-control" id="now_ingredient_production_cost" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+              <div class="input-group-prepend">
+                <span class="input-group-text">수정 원가</span>
+              </div>
+              <input type="number" class="form-control" id="change_ingredient_production_cost" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+
+            <div>현 유통기한</div>
+              <p><input type="date" value="" id ="now_ingredient_expiration_date"></p>
+            </div>
+            <div>수정 유통기한</div>
+              <p><input type="date" value="" id ="change_ingredient_expiration_date"></p>
+          </div>
+
+          <div class="submitButton">
+            <button type="button" class="btn btn-primary" onclick="del_ingredient()">
+              재료 수정하기
+            </button>
+          </div>
              
 
             </form>
