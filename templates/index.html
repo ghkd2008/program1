@@ -72,7 +72,7 @@
                 <form>
                   <p><input type="date" value="" id ="ingredient_expiration_date"></p>
                 </div>
-            
+              </form>
 
               <div class="submitButton">
                 <button type="button" class="btn btn-primary" onclick="input_ingredient()">
@@ -100,55 +100,58 @@
                     </tbody>
                 </table>
             </div>
-<hr>
-              <div>재료 수정하기</div>
-              <p>현재 있는 재료 중 수정하고 싶은 재료를 입력하고, 수정할 값을 입력하세요</p>
-              <div class="input-group mb-3">
-
-                <div class="input-group-prepend">
-                  <span class="input-group-text" >현 재료명</span>
-                </div>
-                <input type="text" class="form-control" id="now_ingredient_name" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" >수정 재료명</span>
-                </div>
-                <input type="text" class="form-control" id="change_ingredient_name" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-              </div>
-
+            <p>현재 있는 재료 중 수정하고 싶은 재료를 입력하고, 수정할 값을 입력하세요</p>
             <div class="input-group mb-3">
+
               <div class="input-group-prepend">
-                <span class="input-group-text">현 수량</span>
+                <span class="input-group-text" >현 재료명</span>
               </div>
-              <input type="number" class="form-control" id="now_ingredient_quantity" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+              <input type="text" class="form-control" id="now_ingredient_name" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
               <div class="input-group-prepend">
-                <span class="input-group-text">수정 수량</span>
+                <span class="input-group-text" >수정 재료명</span>
               </div>
-              <input type="number" class="form-control" id="change_ingredient_quantity" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+              <input type="text" class="form-control" id="change_ingredient_name" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
             </div>
 
             <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">현 원가</span>
-              </div>
-              <input type="number" class="form-control" id="now_ingredient_production_cost" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-              <div class="input-group-prepend">
-                <span class="input-group-text">수정 원가</span>
-              </div>
-              <input type="number" class="form-control" id="change_ingredient_production_cost" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            <div class="input-group-prepend">
+              <span class="input-group-text">현 수량</span>
             </div>
+            <input type="number" class="form-control" id="now_ingredient_quantity" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            <div class="input-group-prepend">
+              <span class="input-group-text">수정 수량</span>
+            </div>
+            <input type="number" class="form-control" id="change_ingredient_quantity" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
 
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">현 원가</span>
+            </div>
+            <input type="number" class="form-control" id="now_ingredient_production_cost" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            <div class="input-group-prepend">
+              <span class="input-group-text">수정 원가</span>
+            </div>
+            <input type="number" class="form-control" id="change_ingredient_production_cost" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+            
+            
+            
             <div>현 유통기한</div>
-              <p><input type="date" value="" id ="now_ingredient_expiration_date"></p>
-            </div>
-            <div>수정 유통기한</div>
-              <p><input type="date" value="" id ="change_ingredient_expiration_date"></p>
-          </div>
+            <p><input type="date" value="" id ="now_ingredient_expiration_date"></p>
+          
+          <div>수정 유통기한</div>
+            <p><input type="date" value="" id ="change_ingredient_expiration_date"></p>
+      
 
-          <div class="submitButton">
-            <button type="button" class="btn btn-primary" onclick="del_ingredient()">
-              재료 수정하기
-            </button>
-          </div>
+        <div class="submitButton">
+          <button type="button" class="btn btn-primary" onclick="change_ingredient()">
+            재료 수정하기
+          </button>
+        </div>
+            
+              </div>
+         
              
 
             </form>
@@ -174,8 +177,8 @@
                       </thead>
                       <tbody id='menu_tbody'>
                           <tr>
-                              <td><input type='text' name='opty_subj[]'  placeholder="메뉴를 입력하세요"></td>
-                              <td><input type='number' name='opt[0][]'  placeholder="주문 수량을 입력하세요"></td>
+                              <td><input type='text' name='opty_subj[]' id='menu_name_1'  placeholder="메뉴를 입력하세요"></td>
+                              <td><input type='number' name='opt[0][]'  id= 'menu_price_1' placeholder="주문 수량을 입력하세요"></td>
                           </tr>
                       </tbody>
                   </table>
@@ -183,7 +186,7 @@
                   
                   <input type=button value="메뉴 입력칸 삭제" onclick="del_menu_row();">
                   <div class="submitButton">
-                    <button type="button" class="btn btn-primary" onclick="">
+                    <button type="button" class="btn btn-primary" onclick="input_order()">
                       주문 입력하기
                     </button>
                     <span> <p> ↑ 위의 버튼을 누르면 주문에 필요한 만큼 재료가 차감됩니다. </p></span>
@@ -253,7 +256,7 @@
               <div class="tab-pane fade" id="input_recipe">
                 <p>새로운 메뉴를 추가하려면 메뉴명과 가격을 입력하고, 그에 필요한 재료와 재료수량을 입력하세요</p>
                 <form>
-                  <input type=button value="재료 입력칸 추가" onclick="add_row();">
+                  <input type=button value="재료 입력칸 추가" onclick="add_recipe_row();">
                   
                   <input type=button value="재료 입력칸 삭제" onclick="del_row();">
                 
@@ -370,7 +373,12 @@
         $.ajax({
                     type: "POST",
                     url: "/ingredients",
-                    data: { ingredient_give: ingredient_name, quantity_give: ingredient_quantity, production_cost_give: ingredient_production_cost, expiration_date_give : ingredient_expiration_date },
+                    data: {
+                       ingredient_give: ingredient_name,
+                        quantity_give: ingredient_quantity,
+                         production_cost_give: ingredient_production_cost,
+                          expiration_date_give : ingredient_expiration_date
+                           },
                     success: function (response) {
                         if (response['result'] == 'success') {
                             alert(response['msg']);
@@ -433,28 +441,72 @@
   var stock_td = null;
   var stock_x = 0;
   var stock_y = 0;
- 
+  let menu_row_count = 1;
   
-  function add_row() 
-  {
-      // 행 제목 추가
-      stock_tr = document.createElement('tr');
-      stock_tbody.appendChild(stock_tr);
-      stock_td = document.createElement('td');
-      stock_tr.appendChild(stock_td);
-      add_name('opty_subj[]');
-      stock_y++;
-  
-      // 열의 갯수에 따라 추가된 행의 열 추가
-      var stock_thead_td = stock_thead.getElementsByTagName('td');
-      for (i=0; i<stock_thead_td.length-1; i++)
-      {
-          stock_td = document.createElement('td');
-          stock_tr.appendChild(stock_td);
-          add_count('opt['+stock_y+'][]');
-         
-      }
+  function add_menu_row() {
+    menu_row_count += 1;
+      let row = `
+          <tr>
+            <td><input id="menu_name_${menu_row_count}" placeholder="메뉴를 입력하세요" /></td>
+            <td><input id="menu_price_${menu_row_count}" placeholder="주문 수량을 입력하세요" /></td>
+        </tr>
+          `;
+      $("#menu_tbody").append(row);
   }
+  function input_order() {
+    
+    let menu_date = $("#now_date").val();
+    let menu_name = $("#menu_name_").val();
+    let menu_price = $("#menu_price_").val();
+
+        if (menu_name == "") {
+          alert("메뉴명을 입력하세요");
+          $("#menu_name_" + i).focus();
+          return
+        }
+        else if (menu_price = "") {
+          alert("수량을 입력하세요");
+          $("#menu_price_" + i).focus();
+          return
+        }
+        else if (menu_date = "") {
+          alert("주문 받은 날짜를 입력하세요");
+          $("#now_date").focus();
+          return
+        }
+
+
+    let menus = []
+    for (let i = 1; i <= menu_row_count; i++) {
+        menus.push({'name':menu_name + i, 'price':menu_price + i})
+      }
+
+
+        $.ajax({
+                    type: "POST",
+                    url: "/menus",
+                    data: { menus_give: menus, menu_date_give : menu_date },
+                    success: function (response) {
+                        if (response['result'] == 'success') {
+                            alert(response['msg']);
+                            window.location.reload();
+                        }
+                    },
+                    error:function(request,status,error){
+             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+          }
+
+                })
+  }
+  
+
+    function get_values() {
+      for (let i = 1; i <= count; i++) {
+        $("menu_name" + i).val();
+        $("menu_price" + i).val();
+      }
+    }
+  
   
   
   function add_name(name)
@@ -497,7 +549,7 @@
   var menu_x = 0;
   var menu_y = 0;
   
-  function add_menu_row() 
+  function add_recipe_row() 
   {
       // 행 제목 추가
       menu_tr = document.createElement('tr');
@@ -553,8 +605,94 @@
   document.getElementById('now_date').valueAsDate = new Date();
   </script>
   
-  
+  <!--재료 수정 ajax-->
+  <script>
+    function change_ingredient() {
+        let now_ingredient_name = $("#now_ingredient_name").val();
+        let now_ingredient_quantity = $("#now_ingredient_quantity").val();
+        let now_ingredient_production_cost = $("#now_ingredient_production_cost").val();
+        let now_ingredient_expiration_date = $("#now_ingredient_expiration_date").val();
+        let change_ingredient_name = $("#change_ingredient_name").val();
+        let change_ingredient_quantity = $("#change_ingredient_quantity").val();
+        let change_ingredient_production_cost = $("#change_ingredient_production_cost").val();
+        let change_ingredient_expiration_date = $("#change_ingredient_expiration_date").val();
 
+        if (now_ingredient_name == "") {
+          alert("현 재료명을 입력하세요");
+          $("#now_ingredient_name").focus();
+          return
+        }
+        else if (change_ingredient_name =="") {
+          alert("수정 재료명을 입력하세요");
+          $("#change_ingredient_name").focus();
+          return
+        }
+        else if (now_ingredient_quantity == "") {
+          alert("현 수량을 입력하세요");
+          $("#now_ingredient_quantity").focus();
+          return
+        }
+        else if (change_ingredient_quantity =="") {
+          alert("수정 수량을 입력하세요");
+          $("#change_ingredient_quantity").focus();
+          return
+        }
+        else if (now_ingredient_production_cost== "") {
+          alert("현재 원가를 입력하세요");
+          $("#now_ingredient_production_cost").focus();
+          return
+        }
+        else if (change_ingredient_production_cost== "") {
+          alert("수정 원가를 입력하세요");
+          $("#change_ingredient_production_cost").focus();
+          return
+        }
+        else if (now_ingredient_expiration_date == false) {
+          alert("현재 유통기한을 입력하세요");
+          $("#now_ingredient_expiration_date").focus();
+          return
+        }
+        else if (now_ingredient_expiration_date == false) {
+          alert("수정 유통기한을 입력하세요");
+          $("#change_ingredient_expiration_date").focus();
+          return
+        }
+        $.ajax({
+                    type: "POST",
+                    url: "/change_ingredients",
+                    data: {     now_ingredient_name_give: now_ingredient_name,
+                                now_ingredient_quantity_give: now_ingredient_quantity,
+                                now_ingredient_production_cost_give: now_ingredient_production_cost ,
+                                now_ingredient_expiration_date_give : now_ingredient_expiration_date,
+                                change_ingredient_name_give : change_ingredient_name,
+                                change_ingredient_quantity_give : change_ingredient_quantity,
+                                change_ingredient_production_cost_give : change_ingredient_production_cost,
+                                change_ingredient_expiration_date_give : change_ingredient_expiration_date
+                        },
+                    success: function (response) {
+                        if (response['result'] == 'success') {
+                            alert(response['msg']);
+                            $('#now_ingredient_name').val();
+                            $('#now_ingredient_quantity').val();
+                            $('#now_ingredient_production_cost').val();
+                            $('#now_ingredient_expiration_date').val();
+                            $('#change_ingredient_name').val();
+                            $('#change_ingredient_quantity').val();
+                            $('#change_ingredient_production_cost').val();
+                            $('#change_ingredient_expiration_date').val();
+                            window.location.reload();
+                        }
+                    },
+                    error:function(request,status,error){
+             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+          }
+
+                })
+
+}
+
+  </script>
+  
 
 
   </body>

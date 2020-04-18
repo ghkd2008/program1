@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <tbody id="menus">
+      <tr>
+        <td><input id="name1" /></td>
+        <td><input id="value1" /></td>
+      </tr>
+    </tbody>
+    <button onclick="add_row()">추가</button>
+  </body>
+
+  <script>
+    let count = 1;
+    function add_row() {
+      count += 1;
+      let row = `
+          <tr>
+            <td><input id="name${count}" /></td>
+            <td><input id="value${count}" /></td>
+        </tr>
+          `;
+      $("#menus").append(row);
+    }
+
+    function get_values() {
+      for (let i = 1; i <= count; i++) {
+        $("name" + i).val();
+        $("value" + i).val();
+      }
+    }
+  </script>
+</html>
