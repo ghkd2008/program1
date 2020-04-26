@@ -5,25 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>스마트 재고 관리 프로그램</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
     <style>
+      h1 {
+        font-family: 'Gugi', cursive;
+        font-size: 50px;
+      }
+
+      h2 {
+        font-family: 'Gugi', cursive;
+        font-size: 20px;
+        color: rgb(101, 100, 104);
+        text-align: center;
+      }
+
       p { margin:20px 0px; }
 
       #ingredient_input {
         
-        font-size: 30px;
-        width: 900px;
+        font-size: 25px;
+        width: auto;
         margin: 10px auto;
         border: 3px solid rgb(14, 3, 2);
         padding: 20px;
         border-radius: 10px;
       }
+      .box1 {
+        border: 3px solid rgb(83, 82, 85);
+        padding: 10px;
+        border-radius: 10px;
+      
+      }
+      .ing_list_title {
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+      }
+      #logo {
+        margin-right: 20px;
+
+      }
+      .box2 {
+        border: 3px solid rgb(83, 82, 85);
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        margin: 0 auto 0 auto;
+
+      }
+      #box3 {
+        border: 3px solid rgb(83, 82, 85);
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        margin: 0 auto 0 auto;
+
+      }
+
     </style>
   </head>
   <body>
     <div class="container">
       <div class="row">
         <div class="col">
+          <br>
+          <img id="logo" src="../src/logo2.png" width="100px", height="100px" style="float: left" >
           <p><h1>스마트 재고 관리 프로그램</h1></p>
+          <br>
+        
+          
             <ul class="nav nav-tabs">
               <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#ingredient">재료</a>
@@ -45,6 +95,11 @@
             <form id="ingredient_input">
             <div class="tab-content">
               <div class="tab-pane fade show active" id="ingredient">
+                
+                
+                
+                <div class = "box2">
+                <p style="font-size: 30px;"><재료 입력란></p>
                 <p>재료명, 수량, 원가, 유통기한을 입력하고 입력하기 버튼을 누르세요</p>
                 <div class="input-group mb-3">
 
@@ -67,19 +122,25 @@
                   </div>
                   <input type="number" class="form-control" id="ingredient_production_cost" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
-
-                <div>유통기한
-                <form>
-                  <p><input type="date" value="" id ="ingredient_expiration_date"></p>
+                
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">유통기한</span>
                 </div>
-              </form>
+                  <input type="date" class="form-control" value="" id ="ingredient_expiration_date">
+                </div>
+                
+              
 
               <div class="submitButton">
                 <button type="button" class="btn btn-primary" onclick="input_ingredient()">
                   재료 입력하기
                 </button>
               </div>
+            </div>
               <br>
+              <div class = "box1">
+              <p class = "ing_list_title"><현재 재료 리스트></p>
               <div class="ingredients">
                 <table class="table">
                     <thead>
@@ -99,10 +160,13 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-            <p>현재 있는 재료 중 수정하고 싶은 재료를 입력하고, 수정할 값을 입력하세요</p>
+                </div>
+              </div>
+            <br>
+<div id = "box3">
+              <p><재료 수정란></p>
+              <p>현재 있는 재료 중 수정하고 싶은 재료를 입력하고, 수정할 값을 입력하세요</p>
             <div class="input-group mb-3">
-
               <div class="input-group-prepend">
                 <span class="input-group-text" >현 재료명</span>
               </div>
@@ -134,20 +198,24 @@
             </div>
             <input type="number" class="form-control" id="change_ingredient_production_cost" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
           </div>
-            
-            
-            
-            <div>현 유통기한</div>
-            <p><input type="date" value="" id ="now_ingredient_expiration_date"></p>
-          
-          <div>수정 유통기한</div>
-            <p><input type="date" value="" id ="change_ingredient_expiration_date"></p>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">현 유통기한</span>
+            </div>
+            <input type="date" class="form-control" id="now_ingredient_expiration_date" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            <div class="input-group-prepend">
+              <span class="input-group-text">수정 유통기한</span>
+            </div>
+            <input type="date" class="form-control" id="change_ingredient_expiration_date" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
       
 
         <div class="submitButton">
           <button type="button" class="btn btn-primary" onclick="change_ingredient()">
             재료 수정하기
           </button>
+        </div>
         </div>
             
               </div>
@@ -177,14 +245,14 @@
                       </thead>
                       <tbody id='menu_tbody'>
                           <tr>
-                              <td><input type='text' name='opty_subj[]' id='menu_name_1'  placeholder="메뉴를 입력하세요"></td>
-                              <td><input type='number' name='opt[0][]'  id= 'menu_price_1' placeholder="주문 수량을 입력하세요"></td>
+                              <td><input type='text'  id='menu_name_0'  placeholder="메뉴를 입력하세요"></td>
+                              <td><input type='number'  id= 'menu_quantity_0' placeholder="주문 수량을 입력하세요"></td>
                           </tr>
                       </tbody>
                   </table>
-                  <input type=button value="메뉴 입력칸 추가" onclick="add_menu_row();">
+                  <input type=button value="메뉴 입력칸 추가" onclick="add_menu_row()">
                   
-                  <input type=button value="메뉴 입력칸 삭제" onclick="del_menu_row();">
+                  <input type=button value="메뉴 입력칸 삭제" onclick="del_menu_row()">
                   <div class="submitButton">
                     <button type="button" class="btn btn-primary" onclick="input_order()">
                       주문 입력하기
@@ -204,12 +272,12 @@
                         <tbody id="orders-box">
                             <tr>
                                 <td>2020-04-16</td>
-                                <td>메뉴1, 메뉴2, 메뉴3, 메뉴4, 메뉴5</td>
+                                <td>테스트,메뉴1, 메뉴2, 메뉴3, 메뉴4, 메뉴5</td>
                                 <td>1,2,3,4,5</td>
                             </tr>
                             <tr>
                               <td>2020-04-17</td>
-                              <td>메뉴1, 메뉴3, 메뉴4, 메뉴5</td>
+                              <td>테스트,메뉴1, 메뉴3, 메뉴4, 메뉴5</td>
                               <td>1,2,3,4</td>
                           </tr>
                         </tbody>
@@ -233,7 +301,7 @@
                               
                           </tr>
                       </thead>
-                      <tbody id="orders-box">
+                      <tbody id="order_available_box">
                           <tr>
                               <td>메뉴1</td>
                               <td>10</td>
@@ -256,12 +324,10 @@
               <div class="tab-pane fade" id="input_recipe">
                 <p>새로운 메뉴를 추가하려면 메뉴명과 가격을 입력하고, 그에 필요한 재료와 재료수량을 입력하세요</p>
                 <form>
-                  <input type=button value="재료 입력칸 추가" onclick="add_recipe_row();">
                   
-                  <input type=button value="재료 입력칸 삭제" onclick="del_row();">
                 
-                  <table id='stock_table'>
-                      <thead id='stock_thead'>
+                  <table id='recipe_table'>
+                      <thead id='recipe_thead'>
                           <tr>
                               <td>
                                   <input type=text id="input_menu_name" placeholder="메뉴명을 입력하세요"> 
@@ -272,16 +338,19 @@
                               </td>
                           </tr>
                       </thead>
-                      <tbody id='stock_tbody'>
+                      <tbody id='recipe_tbody'>
                           <tr>
-                              <td><input type='text' name='opty_subj[]'  placeholder="필요한 재료를 입력하세요"></td>
-                              <td><input type='number' name='opt[0][]'  placeholder="필요한 재료수량을 입력하세요"></td>
+                              <td><input type='text' id= 'recipe_ingredient_name_0'  placeholder="필요한 재료를 입력하세요"></td>
+                              <td><input type='number' id= 'recipe_ingredient_quantity_0' placeholder="필요한 재료수량을 입력하세요"></td>
                           </tr>
                       </tbody>
                   </table>
+                  <input type=button value="재료 입력칸 추가" onclick="add_recipe_row();">
+                  
+                  <input type=button value="재료 입력칸 삭제" onclick="del_recipe_row();">
                   
                   <div class="submitButton">
-                    <button type="button" class="btn btn-primary" onclick="">
+                    <button type="button" class="btn btn-primary" onclick="input_recipe()">
                       레시피 입력하기
                     </button>
                   </div>
@@ -292,7 +361,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="meta_info" scope="col">번호</th>
+                                
                                 <th class="meta_info" scope="col">메뉴명</th>
                                 <th class="meta_info" scope="col">가격</th>
                                 <th class="meta_info" scope="col">필요한 재료</th>
@@ -301,7 +370,7 @@
                         </thead>
                         <tbody id="recipes-box">
                             <tr>
-                                <td>0</td>
+                                
                                 <td>메뉴1</td>
                                 <td>10000</td>
                                 <td>설탕, 소금, 후추</td>
@@ -317,6 +386,7 @@
             </div>
         </div>
       </div>
+      <h2>designed by junghwan</h2>
     </div>
     
   
@@ -382,10 +452,6 @@
                     success: function (response) {
                         if (response['result'] == 'success') {
                             alert(response['msg']);
-                            $('#ingredient_name').val();
-                            $('#ingredient_quantity').val();
-                            $('#ingredient_production_cost').val();
-                            $('#ingredient_expiration_date').val();
                             window.location.reload();
                         }
                     },
@@ -399,10 +465,10 @@
 
       $(document).ready(function () {
                 $('#ingredients-box').html('');
-                listing();
+                listing_ingredients();
             });
 
-            function listing() {
+            function listing_ingredients() {
                 $.ajax({
                     type: "GET",
                     url: "/ingredients",
@@ -415,6 +481,7 @@
                             }
                         } else {
                             alert('재료리스트를 불러오지 못했습니다');
+                            
                             
                         }
                     }
@@ -434,39 +501,77 @@
 
   <!--레시피 입력 탭 버튼으로 칸 추가-->
 <script>
-  var stock_table = document.getElementById('stock_table');
-  var stock_thead = document.getElementById('stock_thead');
-  var stock_tbody = document.getElementById('stock_tbody');
-  var stock_tr = null;
-  var stock_td = null;
-  var stock_x = 0;
-  var stock_y = 0;
-  let menu_row_count = 1;
-  
+
+  var menu_row_count = 1;
+  var recipe_row_count =1;
+  var menu_table = document.getElementById('menu_table');
+  var menu_thead = document.getElementById('menu_thead');
+  var menu_tbody = document.getElementById('menu_tbody');
+  var menu_tr = null;
+  var menu_td = null;
+  var menu_x = 0;
+  var menu_y = 0;
+
   function add_menu_row() {
-    menu_row_count += 1;
-      let row = `
+    
+      let menu_row = `
           <tr>
             <td><input id="menu_name_${menu_row_count}" placeholder="메뉴를 입력하세요" /></td>
-            <td><input id="menu_price_${menu_row_count}" placeholder="주문 수량을 입력하세요" /></td>
+            <td><input id="menu_quantity_${menu_row_count}" placeholder="주문 수량을 입력하세요" /></td>
         </tr>
           `;
-      $("#menu_tbody").append(row);
+      $("#menu_tbody").append(menu_row);
+      menu_row_count = menu_row_count + 1;
   }
+  function del_menu_row()
+  {
+      var menu_tbody_tr = menu_tbody.getElementsByTagName('tr');
+      if (menu_tbody_tr.length > 1) {
+          menu_tbody.deleteRow(menu_tbody_tr.length-1);
+          menu_row_count = menu_row_count - 1;
+          
+      }
+  }
+
+  function add_recipe_row() {
+
+let recipe_row = `
+        <tr>
+          <td><input type='text'  id= 'recipe_ingredient_name_${recipe_row_count}'  placeholder="필요한 재료를 입력하세요"></td>
+          <td><input type='number'   id= 'recipe_ingredient_quantity_${recipe_row_count}' placeholder="필요한 재료수량을 입력하세요"></td>
+        </tr>
+      `;
+  $("#recipe_tbody").append(recipe_row);
+  recipe_row_count = recipe_row_count + 1;
+
+
+}
+
+  function del_recipe_row() {
+    var recipe_tbody_tr = recipe_tbody.getElementsByTagName('tr');
+      if (recipe_tbody_tr.length > 1) {
+          recipe_tbody.deleteRow(recipe_tbody_tr.length-1);
+          recipe_row_count = recipe_row_count - 1;
+
+          
+      }
+
+  }
+
+//주문 입력하기
   function input_order() {
     
     let menu_date = $("#now_date").val();
-    let menu_name = $("#menu_name_").val();
-    let menu_price = $("#menu_price_").val();
-
-        if (menu_name == "") {
+    
+    /*
+        if (menu_name_ == "") {
           alert("메뉴명을 입력하세요");
           $("#menu_name_" + i).focus();
           return
         }
-        else if (menu_price = "") {
+        else if (menu_quantity_ = "") {
           alert("수량을 입력하세요");
-          $("#menu_price_" + i).focus();
+          $("#menu_quantity_" + i).focus();
           return
         }
         else if (menu_date = "") {
@@ -474,23 +579,32 @@
           $("#now_date").focus();
           return
         }
-
+*/
 
     let menus = []
-    for (let i = 1; i <= menu_row_count; i++) {
-        menus.push({'name':menu_name + i, 'price':menu_price + i})
+    for (let i = 0; i < menu_row_count; i++) {
+      let menu_name = $("#menu_name_" + i).val();
+      let menu_quantity = $("#menu_quantity_" + i).val();
+      menus.push({'name':menu_name, 'quantity':menu_quantity})
+      
       }
+      console.log(menus)
+      menus = JSON.stringify(menus);
 
 
         $.ajax({
                     type: "POST",
                     url: "/menus",
-                    data: { menus_give: menus, menu_date_give : menu_date },
+                    data: { 
+                            menus_give : menus, 
+                            menu_date_give : menu_date 
+                          },
                     success: function (response) {
                         if (response['result'] == 'success') {
                             alert(response['msg']);
                             window.location.reload();
                         }
+                        
                     },
                     error:function(request,status,error){
              alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -498,17 +612,61 @@
 
                 })
   }
-  
 
-    function get_values() {
-      for (let i = 1; i <= count; i++) {
-        $("menu_name" + i).val();
-        $("menu_price" + i).val();
-      }
-    }
+  $(document).ready(function () {
+                $('#orders-box').html('');
+                listing_orders();
+            
+
+            });
+
+  function listing_orders() {
+                $.ajax({
+                    type: "GET",
+                    url: "/menus",
+                    data: {},
+                    success: function (response) {
+                        if (response['result'] == 'success') {
+                            let orders_list = response['orders'];
+                           
+                           /////이부분 다시!!! 리스트 속 딕셔너리에서 메뉴명, 수량 따로 따로 어떻게 불러올건지? 
+                            for (let i = 0; i < orders_list.length; i++) {
+                              let date = orders_list[i]['menu_date']
+                              let menus = JSON.parse(orders_list[i]['menus'])
+                              for(let j=0; j< menus.length; j++) {
+                                let name = menus[j]['name']
+                                let quantity = menus[j]['quantity']
+
+                                if(j == 0) {
+                                  make_orders_box(date, name, quantity)
+                                } else {
+                                  make_orders_box('', name, quantity)
+                                }
+                                
+                              }                               
+                            }
+
+                        } 
+                        
+                        else {
+                            alert('주문리스트를 불러오지 못했습니다');
+                            
+                        }
+                    }
+                })
+          }
+            
+            function make_orders_box(x,y,z) {
+              let orders_temp = '<tr>\
+                                    <td>'+ x + '</td>\
+                                    <td>'+ y + '</td>\
+                                    <td>'+ z + '</td>\
+                                </tr>';
+                $('#orders-box').append(orders_temp);
+            }
   
   
-  
+ 
   function add_name(name)
   {
       var inp = document.createElement('input');
@@ -525,15 +683,8 @@
       inp.setAttribute('name', count);
       stock_td.appendChild(inp);
   }
-  
-  function del_row()
-  {
-      var stock_tbody_tr = stock_tbody.getElementsByTagName('tr');
-      if (stock_tbody_tr.length > 1) {
-          stock_tbody.deleteRow(stock_tbody_tr.length-1);
-          stock_y--;
-      }
-  }
+ 
+ 
   
  
   </script>
@@ -541,14 +692,9 @@
 
 <!--주문 입력 탭 버튼으로 칸 추가-->
 <script>
-  var menu_table = document.getElementById('menu_table');
-  var menu_thead = document.getElementById('menu_thead');
-  var menu_tbody = document.getElementById('menu_tbody');
-  var menu_tr = null;
-  var menu_td = null;
-  var menu_x = 0;
-  var menu_y = 0;
   
+  
+  /*
   function add_recipe_row() 
   {
       // 행 제목 추가
@@ -571,6 +717,7 @@
   }
   
   
+  
   function add_menu_name(name)
   {
       var inp = document.createElement('input');
@@ -587,15 +734,9 @@
       inp.setAttribute('name', count);
       menu_td.appendChild(inp);
   }
+  */
   
-  function del_menu_row()
-  {
-      var menu_tbody_tr = menu_tbody.getElementsByTagName('tr');
-      if (menu_tbody_tr.length > 1) {
-          menu_tbody.deleteRow(menu_tbody_tr.length-1);
-          menu_y--;
-      }
-  }
+
   
  
   </script>
@@ -692,7 +833,144 @@
 }
 
   </script>
-  
+
+
+  <!--레시피 추가 함수 만들기-->
+  <script>
+function input_recipe() {
+let recipe_menu_name = $("#input_menu_name").val();
+let recipe_menu_price = $("#input_menu_price").val();
+
+let recipe_ingredients = []
+    for (let i = 0; i < recipe_row_count; i++) {
+      let recipe_ingredient_name = $("#recipe_ingredient_name_" + i).val();
+      let recipe_ingredient_quantity = $("#recipe_ingredient_quantity_" + i).val();
+      recipe_ingredients.push({'ingredients':recipe_ingredient_name, 'ingredients_need_quantity':recipe_ingredient_quantity})
+      
+      }
+      recipe_ingredients = JSON.stringify(recipe_ingredients);
+
+ $.ajax({
+                    type: "POST",
+                    url: "/recipes",
+                    data: { 
+                            menu_name_give : recipe_menu_name, 
+                            menu_price_give : recipe_menu_price,
+                            recipe_list_give : recipe_ingredients 
+                          },
+                    success: function (response) {
+                        if (response['result'] == 'success') {
+                            alert(response['msg']);
+                            
+                        }
+                    },
+                    error:function(request,status,error){
+             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+          }
+
+                })
+
+
+}
+$(document).ready(function () {
+                $('#recipes-box').html('');
+                listing_recipes();
+            
+
+            });
+
+  function listing_recipes() {
+                $.ajax({
+                    type: "GET",
+                    url: "/recipes",
+                    data: {},
+                    success: function (response) {
+                        if (response['result'] == 'success') {
+                            let recipes_list = response['recipes'];
+                           
+                         
+                            for (let i = 0; i < recipes_list.length; i++) {
+                              let recipe_name = recipes_list[i]['menu_name'];
+                              let recipe_price = recipes_list[i]['menu_price']
+                              let recipe_ingredients = JSON.parse(recipes_list[i]['recipe_list'])
+                              for(let j=0; j< recipe_ingredients.length; j++) {
+                                let name = recipe_ingredients[j]['ingredients']
+                                let quantity = recipe_ingredients[j]['ingredients_need_quantity']
+                                
+                                if(j == 0) {
+                                  make_recipes_box(recipe_name, recipe_price, name, quantity)
+                                } else {
+                                  make_recipes_box('','', name, quantity)
+                                }
+                                
+                              }                               
+                            }
+
+                        } else {
+                            alert('주문리스트를 불러오지 못했습니다');
+                            
+                        }
+                    }
+                })
+          }
+            
+            function make_recipes_box(a,b,x,y) {
+              let recipes_temp = '<tr>\
+                                    <td>'+ a + '</td>\
+                                    <td>'+ b + '</td>\
+                                    <td>'+ x + '</td>\
+                                    <td>'+ y + '</td>\
+                                </tr>';
+                $('#recipes-box').append(recipes_temp);
+            }
+
+
+
+
+//최대 주문 가능량 리스트 만들기
+$(document).ready(function () {
+                $('#order_available_box').html('');
+                listing_order_available();
+            
+
+            });
+
+  function listing_order_available() {
+                $.ajax({
+                    type: "GET",
+                    url: "/max_menu",
+                    data: {},
+                    success: function (response) {
+                        if (response['result'] == 'success') {
+                            let counted_menus = response['counted_menus'];
+                           
+                         
+                            for (let i = 0; i < counted_menus.length; i++) {
+                              let name = counted_menus[i]['name'];
+                              let count = counted_menus[i]['count']
+                              make_available_menu_box(name,count)
+                                
+                              }                               
+                            }
+                            else {
+                            alert('주문리스트를 불러오지 못했습니다');
+                            
+                        }
+                        } 
+                    }
+                )
+          }
+            
+            function make_available_menu_box(a,b) {
+              let available_menu = '<tr>\
+                                    <td>'+ a + '</td>\
+                                    <td>'+ b + '</td>\
+                                </tr>';
+                $('#order_available_box').append(available_menu);
+            }
+
+
+  </script>
 
 
   </body>
